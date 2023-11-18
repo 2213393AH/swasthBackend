@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(`${process.env.DATABASELINK}Swasth`,{
+mongoose.connect(`mongodb+srv://${process.env.DATABASEID}:${process.env.DATABASEPASSWORD}@cluster0.1eyc0ey.mongodb.net/Swasth`,{
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
 });
