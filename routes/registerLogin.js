@@ -11,8 +11,8 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(process.env.DATABASELINK,{
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 mongoose.connection.on('connected', () => {
     console.log('Connected to the swasth database');
