@@ -2,7 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import cors from 'cors';
-import registerLogin from './routes/registerLogin.js'
+import registerLogin from './routes/registerLogin.js';
+import user from './routes/user.js';
 dotenv.config();
 
 const app = express();
@@ -24,7 +25,7 @@ app.get("/",(req,res)=>{
 });
 
 app.use("/registerLogin",registerLogin);
-
+app.use("/user",user);
 
 
 //listening for requests

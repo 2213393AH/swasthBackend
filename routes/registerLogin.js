@@ -2,8 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import bodyParser from "body-parser";
-
+import jwt from "jsonwebtoken";
+// const secretKey = process.env.JWTSECRETKEY;
+const secretKey = "abcdef";
 const router=express.Router();
+
 
 dotenv.config();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -11,8 +14,8 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(process.env.DATABASELINK,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
 });
 mongoose.connection.on('connected', () => {
     console.log('Connected to the swasth database');
@@ -67,10 +70,10 @@ router.post("/login",(req,res)=>{
     console.log(req.body);
     user.findOne({_id : mobileNumber})
     .then(details=>{
-        // console.log(details.Password);
-        // console.log(details);
+        const user={"mobibleNumber":mobileNumber,"Name":details.FirstName+" "+details.LastName};
         if(details.Password===password){
-            res.json({message : "Authorized User" });
+            const tkn = jwt.sign({user}, secretKey);
+            res.json({message : "Authorized User" , token :tkn});
         }else{
             res.json({message : "Invalid Password" });
         }
