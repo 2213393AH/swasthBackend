@@ -64,7 +64,7 @@ router.post("/register", (req, res) => {
 });
 
 
-router.post("/login",(req,res)=>{
+router.get("/login",(req,res)=>{
     const mobileNumber = req.body.mobileNumber;
     const password = req.body.Password;
     console.log(req.body);

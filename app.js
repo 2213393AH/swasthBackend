@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 
 //listerning for various routes
 app.get("/",(req,res)=>{
-  res.send("server working");
+  res.render("swasthLoading.ejs");
 });
 
 app.use("/registerLogin",registerLogin);
