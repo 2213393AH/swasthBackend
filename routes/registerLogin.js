@@ -33,6 +33,9 @@ const usersSchema = new mongoose.Schema({
 const user = mongoose.model("registerLogin", usersSchema);
 
 router.post("/register", (req, res) => {
+    if(req.body.mobibleNumber==NULL){
+        res.status(400).send({error:"Missing Data"});
+    }
     const mobileNumber = req.body.mobileNumber;
     const firstName = req.body.FirstName;
     const lastName = req.body.LastName;

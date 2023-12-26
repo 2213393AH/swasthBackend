@@ -26,7 +26,17 @@ app.get("/",(req,res)=>{
 
 app.use("/registerLogin",registerLogin);
 app.use("/user",user);
+app.get("/test",(req,res)=>{
+  const date = new Date();
+  console.log("recived Test Request",date);
+  res.json({message: "Server Working"});
+});
 
+
+// Catch-all route for 404 errors
+app.use((req, res) => {
+  res.status(404).render("error404page.ejs"); // Assuming you have a 404.ejs file for your custom 404 page
+});
 
 //listening for requests
 app.listen(process.env.PORT||port, () => {
